@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.fujion.webjars</groupId>
+		<artifactId>fujion-webjars</artifactId>
+		<version>2.1.0</version>
+	</parent>
+
+	<name>JQuery</name>
+	<artifactId>fujion-jquery</artifactId>
+	<version>3.3.1-SNAPSHOT</version>
+	<description>JQuery</description>
+
+	<properties>
+		<src.url>http://code.jquery.com/jquery-${src.version}.js</src.url>
+		<systemjs>
+			{
+				"paths": {
+					"jquery": "jquery"
+				},
+				"shim": {
+					"jquery": { "exports": "$" }
+				}
+			}
+		</systemjs>
+	</properties>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>precompile</id>
+						<configuration>
+							<target>
+								<get src="${src.url}" dest="${webjar.target}/jquery.js"/>
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.samaxes.maven</groupId>
+				<artifactId>minify-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>
