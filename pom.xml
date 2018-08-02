@@ -8,7 +8,7 @@
 	</parent>
 
 	<name>JQuery</name>
-	<artifactId>fujion-jquery</artifactId>
+	<artifactId>webjar-jquery</artifactId>
 	<version>3.3.1-SNAPSHOT</version>
 	<description>JQuery</description>
 
