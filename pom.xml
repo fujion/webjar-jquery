@@ -60,7 +60,7 @@
 							<target>
 								<copy todir="${webjar.target}">
 									<fileset dir="${src.rootdir}/node_modules/jquery" includes="*.txt,*.md"/>
-									<fileset dir="${src.rootdir}/node_modules/jquery/dist" />
+									<fileset dir="${src.rootdir}/node_modules/jquery/dist"/>
 								</copy>
 							</target>
 						</configuration>
