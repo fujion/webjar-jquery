@@ -9,12 +9,10 @@
 
 	<name>JQuery</name>
 	<artifactId>webjar-jquery</artifactId>
-	<version>3.4.1-SNAPSHOT</version>
+	<version>3.5.0-SNAPSHOT</version>
 	<description>JQuery</description>
 
 	<properties>
-		<src.url>http://code.jquery.com/jquery-${src.version}.js</src.url>
-		<skip.minification>false</skip.minification>
 		<systemjs>
 			{
 				"paths": {
@@ -26,9 +24,21 @@
 			}
 		</systemjs>
 	</properties>
-	
+
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>npm-install</id>
+						<configuration>
+							<skip>false</skip>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<executions>
@@ -36,7 +46,22 @@
 						<id>precompile</id>
 						<configuration>
 							<target>
-								<get src="${src.url}" dest="${webjar.target}/jquery.js" />
+								<copy tofile="${src.rootdir}/package.json" file="${basedir}/package-template.json">
+									<filterchain>
+										<expandproperties />
+									</filterchain>
+								</copy>
+							</target>
+						</configuration>
+					</execution>
+					<execution>
+						<id>postcompile</id>
+						<configuration>
+							<target>
+								<copy todir="${webjar.target}">
+									<fileset dir="${src.rootdir}/node_modules/jquery" includes="*.txt,*.md"/>
+									<fileset dir="${src.rootdir}/node_modules/jquery/dist" />
+								</copy>
 							</target>
 						</configuration>
 					</execution>
