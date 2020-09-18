@@ -1,10 +1,5 @@
 {
-  "paths": {
+  "imports": {
     "jquery": "dist/jquery.js"
-  },
-  "shim": {
-    "jquery": {
-      "exports": "$"
-    }
   }
 }
