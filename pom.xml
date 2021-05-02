@@ -9,7 +9,7 @@
 
 	<name>JQuery</name>
 	<artifactId>webjar-jquery</artifactId>
-	<version>3.5.1-1</version>
+	<version>3.6.0</version>
 	<description>JQuery</description>
 
 	<build>
